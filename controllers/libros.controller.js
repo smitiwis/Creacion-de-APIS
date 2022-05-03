@@ -1,4 +1,5 @@
 const { request, response } = require('express');
+const Libro = require('../models/libro');
 
 
 const librosGet = (req = request, res = response) => {
@@ -7,8 +8,11 @@ const librosGet = (req = request, res = response) => {
     })
 }
 
-const librosPost = (req = request, res = response) => {
+const librosPost = async (req = request, res = response) => {
     const body = req.body;
+    const libro = new Libro(body);
+
+    await libro.save();
 
     res.json({
         coneccion: "conexion --> POST exitosa ...",

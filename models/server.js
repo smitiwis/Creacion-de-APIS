@@ -1,8 +1,11 @@
 require('dotenv').config();
 
+
 const express = require('express')
 const cors = require('cors');
-const app = express()
+const app = express();
+
+const conecionDB = require('../database/config.db');
 
 
 class Server {
@@ -19,16 +22,23 @@ class Server {
         this.routes();
     }
 
-    
+
     middlewares() {
         // COORS
         this.app.use(cors())
 
+        // CONEXION A LA BASE DE DATOS
+        this.conexionDB();
+
         // PARSEO Y LECTURA DEL BODY (LEER EL REQUEST DE LAS PETICIONES)
-        this.app.use( express.json())
+        this.app.use(express.json())
 
         //Directorio publico
         this.app.use(express.static('public'))
+    }
+
+    async conexionDB() {
+        await conecionDB();
     }
 
     routes() {
