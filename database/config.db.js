@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const URI = process.env.MONGO_CNN;
+const URI = process.env.MONGO_CNN || 3000;
 const OPTIONS = {
     useNewUrlParser: true,
     useUnifiedTopology: true
