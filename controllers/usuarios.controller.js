@@ -29,8 +29,8 @@ const usuariosGet = async (req = request, res = response) => {
     // Esta forma que si ambos duraran 3 segundo el total de tiempo que demore seran 6 segundos
     const [usuarios, total] = await Promise.all([
         Usuario.find(query)
-        .skip(parseInt(desde))
-        .limit(Number(limite)),
+            .skip(parseInt(desde))
+            .limit(Number(limite)),
         Usuario.countDocuments(query)
     ])
 
@@ -84,12 +84,21 @@ const usuariosPut = async (req, res) => {
     })
 }
 
-const usuariosDelete = (req, res) => {
-    const query = req.query;
-    console.log("QUERY", query)
+const usuariosDelete = async (req, res) => {
+    const { id } = req.params;
+
+    // ELIMINA LOS USUARIOS DE FORMA FISICA --< EL CUAL NO ES RECOMENDADO
+    // const usuario = await Usuario.findByIdAndDelete(id)
+
+    // ACTUALIZA AL USAURIO SELECIONADO CON EL ESTADO FALSE EL CUAL AL EXTRAER TODOS
+    // LOS USUARIOS ESTE NO VENDRÁ YA QUE SOLO SE TRAEJ LOS USUARIOS CON ESTADO TRUE
+    // ESTO SIRVE PARA NO PERDER LAS REFERECIAS QUE HISO ESTE USUARIO
+    const query = { estado: false };
+    const usuarioDeleted = await Usuario.findByIdAndUpdate(id, query)
+
     res.json({
         msg: 'Delete API-Controller',
-        QUERY: query
+        delete: usuarioDeleted
     })
 }
 
