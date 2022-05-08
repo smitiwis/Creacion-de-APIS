@@ -13,6 +13,7 @@ class Server {
     port = process.env.PORT;
     usuariosPth = '/api/usuarios';
     librosPath = '/api/libros';
+    loginPath = '/api/login';
 
     constructor() {
         // Middlewares
@@ -44,6 +45,7 @@ class Server {
     routes() {
         this.app.use(this.usuariosPth, require('../routes/usuarios.router'));
         this.app.use(this.librosPath, require('../routes/libros.router'));
+        this.app.use(this.loginPath, require('../routes/login.router'));
     }
 
     listen() {

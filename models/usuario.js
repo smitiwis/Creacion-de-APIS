@@ -40,5 +40,14 @@ const usuarioModel = new Schema({
 
 })
 
+usuarioModel.methods.toJSON = function () {
+    // EN ESTA LINEA SE EXTRAE Y SE RETORNA SOLO LOS CAMPOS
+    // QUE DESEO RETORNAR
+    const { __v, password, _id, ...usuario } = this.toObject();
+    usuario.uid = _id;
+
+    return usuario;
+}
+
 
 module.exports = model('Usuario', usuarioModel);

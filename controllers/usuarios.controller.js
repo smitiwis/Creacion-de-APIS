@@ -86,7 +86,6 @@ const usuariosPut = async (req, res) => {
 
 const usuariosDelete = async (req, res) => {
     const { id } = req.params;
-
     // ELIMINA LOS USUARIOS DE FORMA FISICA --< EL CUAL NO ES RECOMENDADO
     // const usuario = await Usuario.findByIdAndDelete(id)
 
@@ -94,10 +93,12 @@ const usuariosDelete = async (req, res) => {
     // LOS USUARIOS ESTE NO VENDRÁ YA QUE SOLO SE TRAEJ LOS USUARIOS CON ESTADO TRUE
     // ESTO SIRVE PARA NO PERDER LAS REFERECIAS QUE HISO ESTE USUARIO
     const query = { estado: false };
-    const usuarioDeleted = await Usuario.findByIdAndUpdate(id, query)
+    const usuarioDeleted = await Usuario.findByIdAndUpdate(id, query);
+
+    console.log("USUARIO_AUTH", req.userAuth)
 
     res.json({
-        msg: 'Delete API-Controller',
+        msg: 'Delete API-Controller --> User remove success ...!',
         delete: usuarioDeleted
     })
 }
