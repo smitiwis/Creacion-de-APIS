@@ -11,9 +11,11 @@ const conecionDB = require('../database/config.db');
 class Server {
     app = app;
     port = process.env.PORT;
-    usuariosPth = '/api/usuarios';
-    librosPath = '/api/libros';
-    loginPath = '/api/login';
+    usuariosPth =       '/api/usuarios';
+    librosPath =        '/api/libros';
+    loginPath =         '/api/login';
+    productosPath =     '/api/productos';
+    categoriasPath =    '/api/categorias';
 
     constructor() {
         // Middlewares
@@ -46,6 +48,8 @@ class Server {
         this.app.use(this.usuariosPth, require('../routes/usuarios.router'));
         this.app.use(this.librosPath, require('../routes/libros.router'));
         this.app.use(this.loginPath, require('../routes/login.router'));
+        this.app.use(this.productosPath, require('../routes/productos.router'));
+        this.app.use(this.categoriasPath, require('../routes/categorias.router'));
     }
 
     listen() {

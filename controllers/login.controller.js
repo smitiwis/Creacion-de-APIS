@@ -8,16 +8,12 @@ const Usuario = require('../models/usuario');
 
 
 
-
-
-
 const loginController = async (req = request, res = response) => {
     const { correo, password } = req.body
 
     try {
         // VALIDAR QUE EL CORREO QUE EXISTA
         const usuario = await Usuario.findOne({ correo });
-        console.log("USUARIO:", usuario._id)
         if (!usuario) {
             return res.status(400).json({
                 msg: 'Correo / Password no son correctos --> CORREO'
