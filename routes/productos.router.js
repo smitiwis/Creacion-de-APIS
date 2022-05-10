@@ -7,13 +7,13 @@ const {
 
 
 
-const productoRouter = Router();
+const routerProductos = Router();
 
-productoRouter.get('/', productosGet);
-productoRouter.post('/', productosPost);
-productoRouter.put('/', productosPut);
-productoRouter.delete('/', productosDelete);
+routerProductos.get('/', productosGet);
+routerProductos.post('/', productosPost);
+routerProductos.put('/', productosPut);
+routerProductos.delete('/', productosDelete);
 
 
-module.exports = productoRouter
+module.exports = routerProductos
 

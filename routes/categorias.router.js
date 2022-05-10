@@ -7,13 +7,13 @@ const {
 
 
 
-const categoriaRouter = Router();
+const routerCategoria = Router();
 
-categoriaRouter.get('/', categoriasGet);
-categoriaRouter.post('/', categoriasPost);
-categoriaRouter.put('/', categoriasPut);
-categoriaRouter.delete('/', categoriasDelete);
+routerCategoria.get('/', categoriasGet);
+routerCategoria.post('/', categoriasPost);
+routerCategoria.put('/', categoriasPut);
+routerCategoria.delete('/', categoriasDelete);
 
 
-module.exports = categoriaRouter
+module.exports = routerCategoria
 

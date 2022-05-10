@@ -13,7 +13,7 @@ const categoriaModel = new Schema({
 categoriaModel.methods.toJSON = function () {
     // EN ESTA LINEA SE EXTRAE Y SE RETORNA SOLO LOS CAMPOS
     // QUE DESEO RETORNAR
-    const { __v, password, _id, ...categoria } = this.toObject();
+    const { __v, _id, ...categoria } = this.toObject();
     // categoria.uid = _id;
 
     return categoria;
