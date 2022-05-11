@@ -4,7 +4,6 @@ const { request, response } = require("express");
 
 const validarROLS = (...roles) => {
 
-    console.log("ROLESS:", roles);
 
     return (req = request, res = response, next) => {
 

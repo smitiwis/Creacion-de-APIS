@@ -1,11 +1,32 @@
 const { request, response } = require("express")
 
+const Categoria = require('../models/categoria');
 
 
-const categoriasPost = (req = request, res = response) => {
+const crearCategoria = async (req = request, res = response) => {
 
-    return res.json({
-        msg: "Categorias --> POST"
+    const nombre = req.body.nombre.toUpperCase();
+
+    // Validar que el nombre de la categoria no se REPITA
+    const categoriaDB = await Categoria.findOne({ nombre });
+    if (categoriaDB) {
+        return res.status(401).json({
+            msg: "La categoria ya fue CREADA"
+        })
+    }
+
+    // PREPARAR LA DATA PARA GUARDAR
+    const data = {
+        nombre,
+        usuario: req.userAuth._id
+    }
+    const categoria = new Categoria(data) //Prepara el modelo para guardar en al bd
+
+    // GUARDAR EN LA BD
+    await categoria.save();
+
+    return res.status(201).json({
+        msg: "Categorias --> POST :: Categoria creada"
     })
 }
 
@@ -19,7 +40,7 @@ const categoriasGet = (req = request, res = response) => {
 const categoriasPut = (req = request, res = response) => {
 
     return res.json({
-        msg: "Categorias --> PuT"
+        msg: "Categorias --> PUT"
     })
 }
 
@@ -32,7 +53,7 @@ const categoriasDelete = (req = request, res = response) => {
 
 
 module.exports = {
-    categoriasPost,
+    crearCategoria,
     categoriasGet,
     categoriasPut,
     categoriasDelete
