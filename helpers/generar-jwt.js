@@ -12,7 +12,7 @@ const generarJWT = (uid = '') => {
 
     return new Promise((resolve, reject) => {
         const payload = { uid };
-        const expireToken = { expiresIn: '1h' };
+        const expireToken = { expiresIn: '4645h' };
 
         jwt.sign(payload, key, expireToken, (err, token) => {
             if (err) {

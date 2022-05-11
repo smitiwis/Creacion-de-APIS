@@ -23,4 +23,13 @@ const categoriaModel = new Schema({
 
 })
 
+categoriaModel.methods.toJSON = function () {
+    // EN ESTA LINEA SE EXTRAE Y SE RETORNA SOLO LOS CAMPOS
+    // QUE DESEO RETORNAR
+    const { __v, estado, ...categoria } = this.toObject();
+
+    return categoria;
+}
+
+
 module.exports = model('Categoria', categoriaModel)
